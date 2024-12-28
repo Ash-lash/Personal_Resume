@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Ash-lash/Resume-Website">
-    <img src="https://raw.githubusercontent.com/Ash-lash/Resume-Website/main/images/profile.jpg" alt="Ashwin's Profile Picture" width="250" style="border-radius: 15%; border: 3px solid #ffc107;">
+    <img src="https://github.com/Ash-lash/Resume_WebPage/blob/main/images/profile.jpg" alt="Ashwin's Profile Picture" width="250" style="border-radius: 15%; border: 3px solid #ffc107;">
   </a>
 </p>
 
