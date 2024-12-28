@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     initParticles();
-    loadProjects();  // Modified function name
+    loadProjects();
     setupProjectModal();
     smoothScroll();
     animateSkills();
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initParticles() {
     particlesJS('particles-js', {
         particles: {
-            number: { value: 100, density: { enable: true, value_area: 800 } },
+            number: { value: 80, density: { enable: true, value_area: 800 } },
             color: { value: '#ffc107' },
             shape: { type: 'circle', stroke: { width: 0, color: '#000000' }, polygon: { nb_sides: 5 } },
             opacity: { value: 0.6, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
@@ -44,34 +44,61 @@ function smoothScroll() {
     });
 }
 
-// New function to load projects from local server data
+// New function to load projects from local data
 function loadProjects() {
-    fetch('/project-details') // Fetch project details
-        .then(response => response.json())
-        .then(projectDetails => {
-              const projectsContainer = document.querySelector('.projects-container');
-               projectsContainer.innerHTML = '';
-                for (const projectName in projectDetails) {
-                    if(projectDetails.hasOwnProperty(projectName)){
-                       const project = projectDetails[projectName];
-                       const projectCard = document.createElement('div');
-                        projectCard.classList.add('project');
-                        projectCard.dataset.project = projectName;
+    const projectDetails = {
+        "Ash_Flash_Browser": {
+            "title": "Ash_Flash_Browser",
+            "description": "A simple web browser built using Python and PyQt. It supports basic navigation and has a history management system."
+          },
+        "Scientific-Calculator": {
+            "title": "Scientific-Calculator",
+            "description": "A scientific calculator application developed with Python using the Tkinter library. It includes trigonometric, logarithmic, and arithmetic operations."
+        },
+          "Analog_Clock": {
+            "title": "Analog_Clock",
+            "description": "An analog clock application built using Python and Tkinter. It displays the current time using a graphical clock interface."
+          },
+          "Periodic-Table": {
+               "title": "Periodic-Table",
+                "description": "A graphical periodic table application developed with Python and Tkinter. It displays key element information."
+          },
+          "Pyhton-IDLE": {
+               "title": "Pyhton-IDLE",
+               "description": "A Python program that allows you to execute your python programs using the python IDLE."
+            },
+            "AshFlash": {
+              "title": "AshFlash AI",
+              "description": "Developed an AI assistant, AshFlash, using Python, with features similar to Google Assistant. Designed to perform various tasks such as voice commands, reminders, and automated functions. Incorporated natural language processing techniques for effective interaction and seamless task execution. Gained hands-on experience in integrating APIs and improving user interaction through Python."
+            },
+        "CRUD Application": {
+             "title": "CRUD Application",
+             "description": "Created a CRUD (Create, Read, Update, Delete) application using Python and MySQL for database management. Designed an intuitive user interface for managing records, providing efficient interaction with the MySQL database. Integrated Python's MySQL connector to ensure smooth communication between the application and the database. Strengthened skills in backend development and SQL queries, ensuring data integrity and security."
+        },
+        "Detection System": {
+             "title": "Detection System (ARVIA)",
+             "description": "Designed a remote-controlled IoT car equipped with advanced sensors and cameras for detecting underground elements. Proposed AR visualization and Google Street View integration for real-time detection and safety alerts. "
+           }
+    };
+      const projectsContainer = document.querySelector('.projects-container');
+        projectsContainer.innerHTML = '';
+            for (const projectName in projectDetails) {
+                if(projectDetails.hasOwnProperty(projectName)){
+                   const project = projectDetails[projectName];
+                   const projectCard = document.createElement('div');
+                    projectCard.classList.add('project');
+                    projectCard.dataset.project = projectName;
 
-                        projectCard.innerHTML = `
-                            <h3 class="project-title">${project.title}</h3>
-                            <p class="project-summary">${project.description}</p>
-                            <button class="project-btn">Learn More</button>
-                        `;
-                         projectsContainer.appendChild(projectCard);
+                    projectCard.innerHTML = `
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-summary">${project.description}</p>
+                        <button class="project-btn">Learn More</button>
+                    `;
+                     projectsContainer.appendChild(projectCard);
 
-                    }
-                 }
+                }
+           }
 
-
-          })
-
-        .catch(error => console.error('Error fetching projects:', error));
 }
 
 function setupProjectModal() {
@@ -83,7 +110,7 @@ function setupProjectModal() {
         const projectCard = event.target.closest('.project');
         if (projectCard) {
             const projectId = projectCard.dataset.project;
-            loadProjectDetails(projectId);
+           loadProjectDetails(projectId)
             projectDetailsModal.style.display = 'flex';
        }
     });
@@ -104,17 +131,54 @@ function setupProjectModal() {
         }
     });
 }
+
 function loadProjectDetails(projectId) {
-    fetch(`/project-details/${projectId}`)
-        .then(response => response.json())
-        .then(data => {
-            const projectDetailsContent = document.getElementById('project-details-content');
-            projectDetailsContent.innerHTML = `
-                <h3>${data.title}</h3>
-                <p>${data.description}</p>
-            `;
-        })
-        .catch(error => console.error('Error:', error));
+      const projectDetails = {
+        "Ash_Flash_Browser": {
+            "title": "Ash_Flash_Browser",
+            "description": "A simple web browser built using Python and PyQt. It supports basic navigation and has a history management system."
+          },
+        "Scientific-Calculator": {
+            "title": "Scientific-Calculator",
+            "description": "A scientific calculator application developed with Python using the Tkinter library. It includes trigonometric, logarithmic, and arithmetic operations."
+        },
+          "Analog_Clock": {
+            "title": "Analog_Clock",
+            "description": "An analog clock application built using Python and Tkinter. It displays the current time using a graphical clock interface."
+          },
+          "Periodic-Table": {
+               "title": "Periodic-Table",
+                "description": "A graphical periodic table application developed with Python and Tkinter. It displays key element information."
+          },
+          "Pyhton-IDLE": {
+               "title": "Pyhton-IDLE",
+               "description": "A Python program that allows you to execute your python programs using the python IDLE."
+            },
+            "AshFlash": {
+              "title": "AshFlash AI",
+              "description": "Developed an AI assistant, AshFlash, using Python, with features similar to Google Assistant. Designed to perform various tasks such as voice commands, reminders, and automated functions. Incorporated natural language processing techniques for effective interaction and seamless task execution. Gained hands-on experience in integrating APIs and improving user interaction through Python."
+            },
+        "CRUD Application": {
+             "title": "CRUD Application",
+             "description": "Created a CRUD (Create, Read, Update, Delete) application using Python and MySQL for database management. Designed an intuitive user interface for managing records, providing efficient interaction with the MySQL database. Integrated Python's MySQL connector to ensure smooth communication between the application and the database. Strengthened skills in backend development and SQL queries, ensuring data integrity and security."
+        },
+        "Detection System": {
+             "title": "Detection System (ARVIA)",
+             "description": "Designed a remote-controlled IoT car equipped with advanced sensors and cameras for detecting underground elements. Proposed AR visualization and Google Street View integration for real-time detection and safety alerts. "
+           }
+    };
+   const projectDetailsContent = document.getElementById('project-details-content');
+        if (projectDetails[projectId]) {
+        projectDetailsContent.innerHTML = `
+            <h3>${projectDetails[projectId].title}</h3>
+            <p>${projectDetails[projectId].description}</p>
+        `;
+      } else {
+         projectDetailsContent.innerHTML = `
+            <h3>Project Not Found</h3>
+            <p>Sorry, details for this project could not be loaded.</p>
+        `;
+        }
 }
 
 function animateSkills() {
